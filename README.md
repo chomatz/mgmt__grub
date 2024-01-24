@@ -3,6 +3,7 @@ ansible role for grub automation
 # requirements
 # variables
 grubby_task = "configure" or "remove" - used by grubby.yml to determine whether to add remove kernel arguments
+
 grub_task = "configure" or "remove" - used by grub_settings.yml to determine whether to add remove grub variables
 # dependencies
 # examples
