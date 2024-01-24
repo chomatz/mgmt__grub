@@ -1,0 +1,7 @@
+---
+
+grub_task: configure
+grub_file: /etc/default/grub
+grubby_task: configure
+
+...

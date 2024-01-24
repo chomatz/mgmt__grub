@@ -1,0 +1,22 @@
+---
+
+- name: configure grub settings
+  ansible.builtin.lineinfile:
+    path: "{{ grub_file }}"
+    regexp: '^.*{{ item.key }}='
+    line: "{{ item.key }}={{ item.value }}"
+    state: present
+  with_items: "{{ grub_setting }}"
+  when: grub_task == "configure"
+  notify: rebuild grub
+
+- name: remove grub settings
+  ansible.builtin.lineinfile:
+    path: "{{ grub_file }}"
+    regexp: '^.*{{ item.key }}='
+    state: absent
+  with_items: "{{ grub_setting }}"
+  when: grub_task == "remove"
+  notify: rebuild grub
+
+...

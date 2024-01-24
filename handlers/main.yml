@@ -1,0 +1,7 @@
+---
+
+- name: rebuild grub
+  ansible.builtin.command:
+    cmd: "grub2-mkconfig -o /boot/efi/EFI/{{ ansible_distribution | lower }}/grub.cfg"
+
+...

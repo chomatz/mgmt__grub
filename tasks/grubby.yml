@@ -1,0 +1,37 @@
+---
+
+- name: configure kernel arguments
+  block:
+
+    - name: configure kernel arguments
+      ansible.builtin.command:
+        cmd: "grubby --update-kernel=ALL --args='{{ item }}'"
+      notify: rebuild grub
+      register: grubby_kernel_arguments
+      with_items: "{{ kernel_arguments }}"
+
+    - name: display grubby result
+      ansible.builtin.debug:
+        var: grubby_kernel_arguments
+        verbosity: 1
+
+  when: grubby_task == "configure"
+
+- name: remove kernel arguments
+  block:
+
+    - name: remove kernel arguments
+      ansible.builtin.command:
+        cmd: "grubby --update-kernel=ALL --remove-args='{{ item }}'"
+      notify: rebuild grub
+      register: grubby_kernel_arguments
+      with_items: "{{ kernel_arguments }}"
+
+    - name: display grubby result
+      ansible.builtin.debug:
+        var: grubby_kernel_arguments
+        verbosity: 1
+
+  when: grubby_task == "remove"
+
+...
