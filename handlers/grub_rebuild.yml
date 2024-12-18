@@ -10,7 +10,7 @@
   rescue:
 
     - name: rebuild grub - retry
-      ansibl.builtin.command:
+      ansible.builtin.command:
         cmd: "grub2-mkconfig -o /boot/grub2/grub.cfg"
 
 ...
