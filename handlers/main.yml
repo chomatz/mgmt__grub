@@ -1,7 +1,16 @@
 ---
 
-- name: rebuild grub
-  ansible.builtin.command:
-    cmd: "grub2-mkconfig -o /boot/efi/EFI/{{ ansible_distribution | lower }}/grub.cfg"
+- name: error handling
+  block:
+
+    - name: rebuild grub
+      ansible.builtin.command:
+        cmd: "grub2-mkconfig -o /boot/efi/EFI/{{ ansible_distribution | lower }}/grub.cfg"
+
+  rescue:
+
+    - name: rebuild grub - retry
+      ansibl.builtin.command:
+        cmd: "grub2-mkconfig -o /boot/grub2/grub.cfg"
 
 ...
