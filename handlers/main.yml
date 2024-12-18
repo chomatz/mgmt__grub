@@ -1,7 +1,7 @@
 ---
 
 - name: rebuild grub
-  ansible.builtin.include_tasks:
-    file: grub_rebuild.yml
+  ansible.builtin.shell:
+    cmd: "grub2-mkconfig -o /boot/efi/EFI/{{ ansible_distribution | lower }}/grub.cfg || grub2-mkconfig -o /boot/grub2/grub.cfg"
 
 ...
