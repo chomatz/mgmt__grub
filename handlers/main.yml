@@ -1,6 +1,6 @@
 ---
 
-- name: error handling
+- name: rebuild grub
   ansibl.builtin.include_tasks:
     file: grub_rebuild.yml
 
